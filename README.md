@@ -16,6 +16,7 @@ This is a boilerplate to build a full stack web application using React, Node.js
     - [Nodemon](#nodemon)
     - [Express](#express)
     - [Concurrently](#concurrently)
+    - [Firebase](#firebase)
     - [VSCode + ESLint + Prettier](#vscode--eslint--prettier)
       - [Installation guide](#installation-guide)
 
