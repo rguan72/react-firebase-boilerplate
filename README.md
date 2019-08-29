@@ -1,9 +1,6 @@
 # simple-react-full-stack
 
-[![Build Status](https://travis-ci.org/crsandeep/simple-react-full-stack.svg?branch=master)](https://travis-ci.org/crsandeep/simple-react-full-stack)
-[![Greenkeeper badge](https://badges.greenkeeper.io/crsandeep/simple-react-full-stack.svg)](https://greenkeeper.io/)
-
-This is a boilerplate to build a full stack web application using React, Node.js, Express and Webpack. It is also configured with webpack-dev-server, eslint, prettier and babel.
+This is a boilerplate to build a full stack web application using React, Node.js, Express and Webpack. It is also configured with webpack-dev-server, eslint, prettier and babel. Full credit goes to https://github.com/crsandeep.
 
 - [simple-react-full-stack](#simple-react-full-stack)
   - [Introduction](#introduction)
@@ -226,9 +223,32 @@ This starts a server and listens on port 8080 for connections. The app responds 
 "dev": "concurrently \"npm run server\" \"npm run client\""
 ```
 
+### Firebase
+[Firebase](https://firebase.google.com) is a suite of tools for mobile and web apps. This boilerplate project uses Realtime Database, a backend free NoSQL database for web and mobile.
+
+Firebase is initialized in `Firebase.js`
+```javascript
+import * as firebase from 'firebase';
+import * as firebaseConfig from './firebase-config.json';
+
+firebase.initializeApp(firebaseConfig.default);
+export default !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
+```
+`firebase-config.json` is a private gitignored file contained in the `client` directory. It contains secure API keys.
+
+The initialized `firebase` is exported. Checking if the firebase app exists or not ensures that it is only initialized once.
+
+Adding
+```javascript
+import firebase from './Firebase';
+```
+to the top of any file allows you to use your initialized `firebase`. 
+
+
 ### VSCode + ESLint + Prettier
 
 [VSCode](https://code.visualstudio.com/) is a lightweight but powerful source code editor. [ESLint](https://eslint.org/) takes care of the code-quality. [Prettier](https://prettier.io/) takes care of all the formatting.
+
 
 #### Installation guide
 
