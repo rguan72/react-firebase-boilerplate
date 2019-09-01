@@ -39,7 +39,11 @@ In the production mode, we will have only 1 server running. All the client side 
 ```bash
 # Clone the repository
 git clone https://github.com/crsandeep/simple-react-full-stack
+```
+Create a new [Firebase](firebase.google.com) project and copy-paste the firebase config from the console to a new
+file, `src/client/firebase-config.json`
 
+```bash
 # Go inside the directory
 cd simple-react-full-stack
 
