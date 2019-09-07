@@ -1,30 +1,41 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import './app.css';
 import ReactImage from './react.png';
 import firebase from './Firebase';
 
-export default class App extends Component {
-  state = { username: null, status: null };
+export default function App() {
+  const [username, setUsername] = useState(null);
+  const [status, setStatus] = useState(null);
 
-  componentDidMount() {
+  useEffect(() => {
     fetch('/api/getUsername')
       .then(res => res.json())
-      .then(user => this.setState({ username: user.username }));
-    firebase.database()
+      .then(user => setUsername(user.username));
+    firebase
+      .database()
       .ref('status')
       .on('value', (snapshot) => {
-        this.setState({ status: snapshot.val() })
-    })
-  }
+        setStatus(snapshot.val());
+      });
+  });
 
-  render() {
-    const { username } = this.state;
-    return (
-      <div>
-        {username ? <h1>{`Hello ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
-        {this.state.status ? <p> {`You are ${this.state.status}`} </p>: <p>Loading... please wait!</p>}
-        <img src={ReactImage} alt="react" />
-      </div>
-    );
-  }
+  return (
+    <div>
+      {username ? (
+        <h1>{`Hello ${username}`}</h1>
+      ) : (
+        <h1>Loading.. please wait!</h1>
+      )}
+      {status ? (
+        <p>
+          {' '}
+          {`You are ${status}`}
+          {' '}
+        </p>
+      ) : (
+        <p>Loading... please wait!</p>
+      )}
+      <img src={ReactImage} alt="react" />
+    </div>
+  );
 }
