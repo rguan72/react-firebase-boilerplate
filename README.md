@@ -40,6 +40,7 @@ In the production mode, we will have only 1 server running. All the client side 
 # Clone the repository
 git clone https://github.com/crsandeep/simple-react-full-stack
 ```
+
 Create a new [Firebase](firebase.google.com) project and copy-paste the firebase config from the console to a new
 file, `src/client/firebase-config.json`
 
@@ -229,31 +230,35 @@ This starts a server and listens on port 8080 for connections. The app responds 
 ```
 
 ### Firebase
+
 [Firebase](https://firebase.google.com) is a suite of tools for mobile and web apps. This boilerplate project uses Realtime Database, a backend free NoSQL database for web and mobile.
 
 Firebase is initialized in `Firebase.js`
-```javascript
-import * as firebase from 'firebase';
-import * as firebaseConfig from './firebase-config.json';
 
-firebase.initializeApp(firebaseConfig.default);
-export default !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
+```javascript
+import * as firebase from "firebase";
+import * as firebaseConfig from "./firebase-config.json";
+
+export default !firebase.apps.length
+  ? firebase.initializeApp(firebaseConfig.default)
+  : firebase.app();
 ```
+
 `firebase-config.json` is a private gitignored file contained in the `client` directory. It contains secure API keys.
 
 The initialized `firebase` is exported. Checking if the firebase app exists or not ensures that it is only initialized once.
 
 Adding
-```javascript
-import firebase from './Firebase';
-```
-to the top of any file allows you to use your initialized `firebase`. 
 
+```javascript
+import firebase from "./Firebase";
+```
+
+to the top of any file allows you to use your initialized `firebase`.
 
 ### VSCode + ESLint + Prettier
 
 [VSCode](https://code.visualstudio.com/) is a lightweight but powerful source code editor. [ESLint](https://eslint.org/) takes care of the code-quality. [Prettier](https://prettier.io/) takes care of all the formatting.
-
 
 #### Installation guide
 
@@ -266,7 +271,6 @@ to the top of any file allows you to use your initialized `firebase`.
     "eslint.alwaysShowStatus": true,
     "eslint.autoFixOnSave": true,
     "editor.formatOnSave": true,
-    "prettier.eslintIntegration": true
     ```
 
 Above, we have modified editor configurations. Alternatively, this can be configured at the project level by following [this article](https://medium.com/@netczuk/your-last-eslint-config-9e35bace2f99).
